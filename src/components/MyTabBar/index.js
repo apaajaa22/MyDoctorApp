@@ -71,8 +71,8 @@ const MyTabBar = ({state, descriptors, navigation}) => {
             onPress={onPress}
             onLongPress={onLongPress}>
             <View style={styles.wrapperTab}>
-              <Icon label={label} focus={isFocused} />
-              <Text style={{color: isFocused ? '#0BCAD4' : '#495A75'}}>
+              <Icon key={index} label={label} focus={isFocused} />
+              <Text key={label} style={styles.text(isFocused)}>
                 {label}
               </Text>
             </View>
@@ -95,4 +95,5 @@ const styles = StyleSheet.create({
     height: 62,
   },
   wrapperTab: {alignItems: 'center'},
+  text: (isFocused) => ({color: isFocused ? '#0BCAD4' : '#495A75'}),
 });

@@ -21,6 +21,11 @@ const SplashScreen = ({navigation}) => {
 export default SplashScreen;
 
 const styles = StyleSheet.create({
-  page: {alignItems: 'center', justifyContent: 'center', flex: 1},
+  page: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   title: {fontSize: 20, fontFamily: 'Nunito-SemiBold'},
 });
