@@ -1,11 +1,32 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ILDokter1, ILDokter2, ILDokter3} from '../../assets';
+import {Gap, ListDoctor} from '../../components';
 
 const TabMessages = () => {
   return (
     <View style={styles.page}>
       <View style={styles.pageContent}>
-        <Text>Message Page</Text>
+        <View style={styles.wrapper}>
+          <Text style={styles.title}>Messages</Text>
+        </View>
+        <View>
+          <ListDoctor
+            image={ILDokter2}
+            name="Alexander Jannie"
+            chat="Baik ibu, terima kasih banyak atas wakt..."
+          />
+          <ListDoctor
+            image={ILDokter1}
+            name="Nairobi Putri Hayza"
+            chat="Oh tentu saja tidak karena jeruk it..."
+          />
+          <ListDoctor
+            image={ILDokter3}
+            name="John McParker Steve"
+            chat="Oke menurut pak dokter bagaimana unt..."
+          />
+        </View>
       </View>
     </View>
   );
@@ -18,7 +39,10 @@ const styles = StyleSheet.create({
   pageContent: {
     backgroundColor: '#FFFFFF',
     flex: 1,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 23,
+    borderBottomRightRadius: 23,
+    paddingVertical: 30,
   },
+  wrapper: {marginLeft: 16},
+  title: {fontSize: 20, fontFamily: 'Nunito-SemiBold'},
 });

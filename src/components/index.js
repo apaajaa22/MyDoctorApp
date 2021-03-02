@@ -9,6 +9,8 @@ import DoctorCategory from './DoctorCategory';
 import RatedDoctor from './RatedDoctor';
 import NewsItem from './NewsItem';
 import Rating from './Rating';
+import ListDoctor from './ListDoctor';
+import ListHospital from './ListHospital';
 
 export {
   Gap,
@@ -22,4 +24,6 @@ export {
   RatedDoctor,
   NewsItem,
   Rating,
+  ListDoctor,
+  ListHospital,
 };

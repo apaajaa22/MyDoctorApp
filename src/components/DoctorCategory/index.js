@@ -3,14 +3,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '..';
 import {IcDokterObat, IcDokterPsikiater, IcDokterUmum} from '../../assets';
 
-const DoctorCategory = ({title, type, onPress}) => {
+const DoctorCategory = ({type, onPress}) => {
   const Icon = () => {
     switch (type) {
-      case 'dokter-umum':
+      case 'dokter umum':
         return <IcDokterUmum />;
-      case 'dokter-psikiater':
+      case 'psikiater':
         return <IcDokterPsikiater />;
-      case 'dokter-obat':
+      case 'dokter obat':
         return <IcDokterObat />;
       default:
         return <IcDokterUmum />;
@@ -23,7 +23,7 @@ const DoctorCategory = ({title, type, onPress}) => {
         <Icon type={type} />
         <Gap height={28} />
         <Text style={styles.title}>Saya butuh</Text>
-        <Text style={styles.subTitle}>{title}</Text>
+        <Text style={styles.subTitle}>{type}</Text>
       </TouchableOpacity>
     </View>
   );

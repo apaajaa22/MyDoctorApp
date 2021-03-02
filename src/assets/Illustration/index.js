@@ -7,6 +7,10 @@ import ILDokter3 from './IL_dokter3.png';
 import ILNews1 from './IL_news1.png';
 import ILNews2 from './IL_news2.png';
 import ILNews3 from './IL_news3.png';
+import ILCover from './IL_cover.png';
+import ILHospital1 from './IL_hospital1.png';
+import ILHospital2 from './IL_hospital2.png';
+import ILHospital3 from './IL_hospital3.png';
 
 export {
   ILBackground,
@@ -18,4 +22,8 @@ export {
   ILNews1,
   ILNews2,
   ILNews3,
+  ILCover,
+  ILHospital1,
+  ILHospital2,
+  ILHospital3,
 };

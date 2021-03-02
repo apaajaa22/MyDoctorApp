@@ -1,11 +1,39 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  ILCover,
+  ILHospital1,
+  ILHospital2,
+  ILHospital3,
+} from '../../assets/Illustration';
+import {Gap, ListHospital} from '../../components';
 
 const TabHospitals = () => {
   return (
     <View style={styles.page}>
-      <View style={styles.pageContent}>
-        <Text>hospitals page</Text>
+      <ImageBackground source={ILCover} style={styles.background}>
+        <Text style={styles.title}>Nearby Hospitals</Text>
+        <Text style={styles.subTitle}>3 tersedia</Text>
+      </ImageBackground>
+      <View style={styles.content}>
+        <View style={styles.contentWrapper}>
+          <Gap height={30} />
+          <ListHospital
+            image={ILHospital1}
+            name="Citra Bunga Merdeka"
+            address="Jln. Surya Sejahtera 20"
+          />
+          <ListHospital
+            image={ILHospital2}
+            name="Happy Family & Kids"
+            address="Jln. Surya Sejahtera 20"
+          />
+          <ListHospital
+            image={ILHospital3}
+            name="Tingkatan Paling Atas"
+            address="Jln. Surya Sejahtera 20"
+          />
+        </View>
       </View>
     </View>
   );
@@ -14,11 +42,20 @@ const TabHospitals = () => {
 export default TabHospitals;
 
 const styles = StyleSheet.create({
-  page: {backgroundColor: '#112340', flex: 1},
-  pageContent: {
-    backgroundColor: '#FFFFFF',
+  page: {flex: 1},
+  background: {
+    maxWidth: '100%',
+    height: 250,
+    alignItems: 'center',
+    paddingTop: 30,
+  },
+  title: {fontSize: 20, fontFamily: 'Nunito-SemiBold', color: '#FFFFFF'},
+  subTitle: {fontSize: 14, fontFamily: 'Nunito-Regular', color: '#FFFFFF'},
+  content: {backgroundColor: '#112340', flex: 1},
+  contentWrapper: {
     flex: 1,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 23,
+    marginTop: -18,
   },
 });

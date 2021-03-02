@@ -36,10 +36,10 @@ const TabDoctor = () => {
             <View style={styles.wrapperDoctorCategory}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <Gap width={16} />
-                <DoctorCategory title="Dokter umum" type="dokter-umum" />
-                <DoctorCategory title="Psikiater" type="dokter-psikiater" />
-                <DoctorCategory title="Dokter obat" type="dokter-obat" />
-                <DoctorCategory title="Dokter Obat" type="dokter-obat" />
+                <DoctorCategory type="dokter umum" />
+                <DoctorCategory type="psikiater" />
+                <DoctorCategory type="dokter obat" />
+                <DoctorCategory type="dokter obat" />
               </ScrollView>
             </View>
             <Gap height={30} />
@@ -66,6 +66,8 @@ const TabDoctor = () => {
               />
               <Text style={styles.title}>Good News</Text>
               <Gap height={16} />
+            </View>
+            <View style={styles.containerMargin}>
               <NewsItem
                 title="Is it safe to stay at home during coronavirus?"
                 date="Today"
