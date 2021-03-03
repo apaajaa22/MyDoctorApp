@@ -16,7 +16,7 @@ import {
   RatedDoctor,
 } from '../../components';
 
-const TabDoctor = () => {
+const TabDoctor = ({navigation}) => {
   return (
     <View style={styles.page}>
       <View style={styles.pageContent}>
@@ -36,7 +36,10 @@ const TabDoctor = () => {
             <View style={styles.wrapperDoctorCategory}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <Gap width={16} />
-                <DoctorCategory type="dokter umum" />
+                <DoctorCategory
+                  type="dokter umum"
+                  onPress={() => navigation.navigate('ChooseDoctor')}
+                />
                 <DoctorCategory type="psikiater" />
                 <DoctorCategory type="dokter obat" />
                 <DoctorCategory type="dokter obat" />

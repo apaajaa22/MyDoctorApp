@@ -11,6 +11,8 @@ import NewsItem from './NewsItem';
 import Rating from './Rating';
 import ListDoctor from './ListDoctor';
 import ListHospital from './ListHospital';
+import ChatItem from './ChatItem';
+import InputChat from './InputChat';
 
 export {
   Gap,
@@ -26,4 +28,6 @@ export {
   Rating,
   ListDoctor,
   ListHospital,
+  ChatItem,
+  InputChat,
 };

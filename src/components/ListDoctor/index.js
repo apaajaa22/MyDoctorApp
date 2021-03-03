@@ -1,15 +1,19 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Gap} from '..';
+import {IcForward} from '../../assets';
 
-const ListDoctor = ({image, name, chat}) => {
+const ListDoctor = ({image, name, desc, type, onPress}) => {
   return (
-    <TouchableOpacity activeOpacity={0.7}>
+    <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
       <View style={styles.page}>
         <Image source={image} style={styles.image} />
         <View style={styles.container}>
           <Text style={styles.title}>{name}</Text>
-          <Text style={styles.subTitle}>{chat}</Text>
+          <Text style={styles.subTitle}>{desc}</Text>
         </View>
+        {type === 'next' && <IcForward />}
+        <Gap width={16} />
       </View>
     </TouchableOpacity>
   );

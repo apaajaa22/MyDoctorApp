@@ -4,28 +4,34 @@ import {color} from 'react-native-reanimated';
 import {IcBtnAdd, ILUserNull} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Upload Photo" />
-      <View style={styles.wrapperPhoto}>
-        <View style={styles.imageBorder}>
-          <Image source={ILUserNull} style={styles.image} />
-          <View style={styles.btnAdd}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <IcBtnAdd />
-            </TouchableOpacity>
+      <Header
+        onPress={() => navigation.goBack()}
+        title="Upload Photo"
+        icon="back-dark"
+      />
+      <View style={styles.page1}>
+        <View style={styles.wrapperPhoto}>
+          <View style={styles.imageBorder}>
+            <Image source={ILUserNull} style={styles.image} />
+            <View style={styles.btnAdd}>
+              <TouchableOpacity activeOpacity={0.7}>
+                <IcBtnAdd />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <Gap height={26} />
+          <View>
+            <Text style={styles.name}>Shayna Melinda</Text>
+            <Text style={styles.profession}>Product Designer</Text>
           </View>
         </View>
-        <Gap height={26} />
-        <View>
-          <Text style={styles.name}>Shayna Melinda</Text>
-          <Text style={styles.profession}>Product Designer</Text>
-        </View>
+        <Button title="Upload and Continue" />
+        <Gap height={30} />
+        <Link title="Skip for this" align="center" />
       </View>
-      <Button title="Upload and Continue" />
-      <Gap height={30} />
-      <Link title="Skip for this" align="center" />
     </View>
   );
 };
@@ -33,7 +39,8 @@ const UploadPhoto = () => {
 export default UploadPhoto;
 
 const styles = StyleSheet.create({
-  page: {padding: 40, flex: 1, backgroundColor: '#FFFFFF'},
+  page: {flex: 1, backgroundColor: '#FFFFFF'},
+  page1: {padding: 40, flex: 1, backgroundColor: '#FFFFFF'},
   wrapperPhoto: {justifyContent: 'center', alignItems: 'center', flex: 1},
   imageBorder: {
     width: 130,

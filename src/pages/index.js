@@ -6,6 +6,8 @@ import UploadPhoto from './UploadPhoto';
 import TabDoctor from './TabDoctor';
 import TabMessages from './TabMessages';
 import TabHospitals from './TabHospitals';
+import ChooseDoctor from './ChooseDoctor';
+import Chatting from './Chatting';
 
 export {
   SplashScreen,
@@ -16,4 +18,6 @@ export {
   TabDoctor,
   TabHospitals,
   TabMessages,
+  ChooseDoctor,
+  Chatting,
 };
