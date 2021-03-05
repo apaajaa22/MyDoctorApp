@@ -8,7 +8,7 @@ import {
   ILDokter7,
   ILDokter8,
 } from '../../assets';
-import {Header, ListDoctor} from '../../components';
+import {Header, List} from '../../components';
 
 const ChooseDoctor = ({navigation}) => {
   return (
@@ -19,32 +19,27 @@ const ChooseDoctor = ({navigation}) => {
         title="Pilih Dokter Anak"
         type="dark"
       />
-      <ListDoctor
+      <List
         type="next"
         image={ILDokter4}
         name="Alexander Jannie"
         desc="Wanita"
         onPress={() => navigation.navigate('Chatting')}
       />
-      <ListDoctor
+      <List
         type="next"
         image={ILDokter5}
         name="John McParker Steve"
         desc="Pria"
       />
-      <ListDoctor
+      <List
         type="next"
         image={ILDokter6}
         name="Nairobi Putri Hayza"
         desc="Wanita"
       />
-      <ListDoctor
-        type="next"
-        image={ILDokter7}
-        name="James Rivillia"
-        desc="Pria"
-      />
-      <ListDoctor
+      <List type="next" image={ILDokter7} name="James Rivillia" desc="Pria" />
+      <List
         type="next"
         image={ILDokter8}
         name="Liu Yue Tian Park"

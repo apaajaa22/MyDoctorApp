@@ -24,7 +24,7 @@ const TabDoctor = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
               <Gap height={30} />
-              <HomeProfile />
+              <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
             </View>
             <Gap height={30} />
             <View style={styles.container}>

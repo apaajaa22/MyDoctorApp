@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Gap} from '..';
 import Button from '../Button';
 import DarkProfile from './DarkProfile';
 
-const Header = ({onPress, title, icon, type, name, profession, image}) => {
+const Header = ({onPress, title, type, name, profession, image}) => {
   if (type === 'dark-profile') {
     return (
       <DarkProfile
@@ -25,6 +26,7 @@ const Header = ({onPress, title, icon, type, name, profession, image}) => {
       <View style={styles.wrapperTitle}>
         <Text style={styles.title(type)}>{title}</Text>
       </View>
+      <Gap width={30} />
     </View>
   );
 };
@@ -42,10 +44,9 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: type === 'dark' ? 20 : 0,
   }),
   title: (type) => ({
-    textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Nunito-SemiBold',
     color: type === 'dark' ? '#FFFFFF' : '#112340',
   }),
-  wrapperTitle: {flex: 1},
+  wrapperTitle: {flex: 1, alignItems: 'center'},
 });

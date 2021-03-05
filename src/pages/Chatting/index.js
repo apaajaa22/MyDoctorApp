@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILDokter6} from '../../assets';
-import {ChatItem, Header, InputChat} from '../../components';
+import {ChatItem, Gap, Header, InputChat} from '../../components';
 
 const Chatting = () => {
   return (
@@ -13,10 +13,11 @@ const Chatting = () => {
         image={ILDokter6}
       />
       <Text style={styles.date}>Senin, 21 Maret, 2020</Text>
+      <Gap height={20} />
       <View style={styles.container}>
+        <ChatItem isMe />
         <ChatItem />
-        <ChatItem />
-        <ChatItem />
+        <ChatItem isMe />
       </View>
       <InputChat />
     </View>

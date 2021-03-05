@@ -15,6 +15,10 @@ import IcStar from './ic_star.svg';
 import IcForward from './ic_forward.svg';
 import IcSendLight from './ic_send_light.svg';
 import IcSendDark from './ic_send_dark.svg';
+import IcEditProfile from './ic_edit_profile.svg';
+import IcHelp from './ic_help.svg';
+import IcLanguage from './ic_language.svg';
+import IcRate from './ic_rate.svg';
 
 export {
   IcSplashScreen,
@@ -34,4 +38,8 @@ export {
   IcForward,
   IcSendLight,
   IcSendDark,
+  IcEditProfile,
+  IcHelp,
+  IcRate,
+  IcLanguage,
 };

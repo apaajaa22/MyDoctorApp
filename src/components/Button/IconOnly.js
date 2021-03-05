@@ -1,17 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {IcBackBlack, IcBackLight} from '../../assets';
 
 const IconOnly = ({icon, onPress}) => {
   const Icon = () => {
-    switch (icon) {
-      case 'back-dark':
-        return <IcBackBlack />;
-      case 'back-light':
-        return <IcBackLight />;
-      default:
-        return <IcBackBlack />;
+    if (icon === 'back-dark') {
+      return <IcBackBlack />;
     }
+    if (icon === 'back-light') {
+      return <IcBackLight />;
+    }
+    return <IcBackBlack />;
   };
   return (
     <TouchableOpacity onPress={onPress}>
@@ -19,7 +18,6 @@ const IconOnly = ({icon, onPress}) => {
     </TouchableOpacity>
   );
 };
-
 export default IconOnly;
 
 const styles = StyleSheet.create({});

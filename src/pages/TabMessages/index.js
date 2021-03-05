@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILDokter1, ILDokter2, ILDokter3} from '../../assets';
-import {ListDoctor} from '../../components';
+import {List} from '../../components';
 
 const TabMessages = () => {
   return (
@@ -11,17 +11,17 @@ const TabMessages = () => {
           <Text style={styles.title}>Messages</Text>
         </View>
         <View>
-          <ListDoctor
+          <List
             image={ILDokter2}
             name="Alexander Jannie"
             desc="Baik ibu, terima kasih banyak atas wakt..."
           />
-          <ListDoctor
+          <List
             image={ILDokter1}
             name="Nairobi Putri Hayza"
             desc="Oh tentu saja tidak karena jeruk it..."
           />
-          <ListDoctor
+          <List
             image={ILDokter3}
             name="John McParker Steve"
             desc="Oke menurut pak dokter bagaimana unt..."

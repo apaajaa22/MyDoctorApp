@@ -3,9 +3,9 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '..';
 import {ILUserDummy} from '../../assets';
 
-const HomeProfile = () => {
+const HomeProfile = ({onPress}) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} style={styles.page}>
+    <TouchableOpacity activeOpacity={0.7} style={styles.page} onPress={onPress}>
       <Image source={ILUserDummy} style={styles.image} />
       <Gap width={12} />
       <View>

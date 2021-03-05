@@ -8,6 +8,8 @@ import TabMessages from './TabMessages';
 import TabHospitals from './TabHospitals';
 import ChooseDoctor from './ChooseDoctor';
 import Chatting from './Chatting';
+import UserProfile from './UserProfile';
+import EditProfile from './EditProfile';
 
 export {
   SplashScreen,
@@ -20,4 +22,6 @@ export {
   TabMessages,
   ChooseDoctor,
   Chatting,
+  UserProfile,
+  EditProfile,
 };

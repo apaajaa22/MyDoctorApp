@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   label: {fontSize: 16, fontFamily: 'Nunito-Regular', color: '#7D8797'},
   input: {
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 12,
     fontSize: 16,
     fontFamily: 'Nunito-Regular',
