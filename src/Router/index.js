@@ -14,6 +14,7 @@ import {
   Chatting,
   UserProfile,
   EditProfile,
+  DoctorProfile,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {MyTabBar} from '../components';
@@ -94,6 +95,11 @@ const Router = () => {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DoctorProfile"
+        component={DoctorProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

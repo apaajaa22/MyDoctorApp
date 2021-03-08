@@ -54,6 +54,7 @@ const TabDoctor = ({navigation}) => {
                 name="Alexa Rachel"
                 profession="Pediatrician"
                 rating
+                onPress={() => navigation.navigate('DoctorProfile')}
               />
               <RatedDoctor
                 image={ILDokter2}

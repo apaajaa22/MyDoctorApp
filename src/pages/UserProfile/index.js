@@ -7,7 +7,7 @@ const UserProfile = ({navigation}) => {
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={40} />
-      <Profile />
+      <Profile name="reza" profession="programmer" />
       <Gap height={30} />
       <List
         name="Edit Profile"

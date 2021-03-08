@@ -2,6 +2,7 @@ import IcSplashScreen from './ic_splashScreen.svg';
 import IcBackBlack from './ic_back_black.svg';
 import IcBackLight from './ic_back_light.svg';
 import IcBtnAdd from './ic_btn_add.svg';
+import IcBtnRemove from './ic_btn_remove.svg';
 import IcDoctorOn from './ic_doctor_on.svg';
 import IcDoctorOff from './ic_doctor_off.svg';
 import IcMessagesOn from './ic_messages_on.svg';
@@ -42,4 +43,5 @@ export {
   IcHelp,
   IcRate,
   IcLanguage,
+  IcBtnRemove,
 };

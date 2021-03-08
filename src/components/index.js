@@ -14,6 +14,8 @@ import ListHospital from './ListHospital';
 import ChatItem from './ChatItem';
 import InputChat from './InputChat';
 import Profile from './Profile';
+import ProfileItems from './ProfileItems';
+import Loading from './Loading';
 
 export {
   Gap,
@@ -32,4 +34,6 @@ export {
   ChatItem,
   InputChat,
   Profile,
+  ProfileItems,
+  Loading,
 };

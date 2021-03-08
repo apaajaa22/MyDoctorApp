@@ -1,13 +1,14 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Gap} from '..';
-import {ILUserDummy} from '../../assets';
+import {IcBtnRemove, ILUserDummy} from '../../assets';
 
 const Profile = ({name, profession}) => {
   return (
     <View style={styles.page}>
       <View style={styles.borderImage}>
         <Image source={ILUserDummy} style={styles.image} />
+        <IcBtnRemove style={styles.btn} />
       </View>
       <Gap height={16} />
       {name && (
@@ -34,6 +35,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {width: 110, height: 110, borderRadius: 100 / 2},
-  title: {fontSize: 20, fontFamily: 'Nunito-SemiBold', color: '#112340'},
-  subTitle: {fontSize: 16, fontFamily: 'Nunito-Regular', color: '#7D8797'},
+  title: {
+    fontSize: 20,
+    fontFamily: 'Nunito-SemiBold',
+    color: '#112340',
+    textAlign: 'center',
+  },
+  subTitle: {
+    fontSize: 16,
+    fontFamily: 'Nunito-Regular',
+    color: '#7D8797',
+    textAlign: 'center',
+  },
+  btn: {position: 'absolute', right: 6, bottom: 8},
 });
