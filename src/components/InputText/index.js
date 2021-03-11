@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {Gap} from '..';
 
-const InputText = ({title, ...rest}) => {
+const InputText = ({title, disable, ...rest}) => {
   const [border, setBorder] = useState('#E9E9E9');
 
   const onFocusForm = () => {
@@ -21,6 +21,8 @@ const InputText = ({title, ...rest}) => {
         onFocus={onFocusForm}
         onBlur={onBlurForm}
         {...rest}
+        editable={!disable}
+        selectTextOnFocus={!disable}
       />
     </View>
   );

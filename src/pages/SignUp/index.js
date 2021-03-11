@@ -3,11 +3,11 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {Button, Gap, Header, InputText, Loading} from '../../components';
 import {Fire} from '../../config';
-import {useForm} from '../../Utils';
+import {getData, storeData, useForm} from '../../Utils';
 
 const SignUp = ({navigation}) => {
   const [form, setForm] = useForm({
-    fullname: '',
+    fullName: '',
     profession: '',
     email: '',
     password: '',
@@ -17,12 +17,27 @@ const SignUp = ({navigation}) => {
 
   const onSubmit = () => {
     console.log('submit form: ', form);
+
     setLoading(true);
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((success) => {
         setLoading(false);
         setForm('reset');
+
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+          uid: success.user.uid,
+        };
+
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
         console.log('success: ', success);
       })
       .catch((err) => {
@@ -48,8 +63,8 @@ const SignUp = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             <InputText
               title="Full Name"
-              value={form.fullname}
-              onChangeText={(value) => setForm('fullname', value)}
+              value={form.fullName}
+              onChangeText={(value) => setForm('fullName', value)}
             />
             <Gap height={24} />
             <InputText

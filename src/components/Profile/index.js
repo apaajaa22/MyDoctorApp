@@ -1,15 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '..';
 import {IcBtnRemove, ILUserDummy} from '../../assets';
 
-const Profile = ({name, profession}) => {
+const Profile = ({name, profession, isRemove, photo, onPress}) => {
   return (
     <View style={styles.page}>
-      <View style={styles.borderImage}>
-        <Image source={ILUserDummy} style={styles.image} />
-        <IcBtnRemove style={styles.btn} />
-      </View>
+      {!isRemove && (
+        <View style={styles.borderImage}>
+          <Image source={photo} style={styles.image} />
+          {isRemove && <IcBtnRemove style={styles.btn} />}
+        </View>
+      )}
+
+      {isRemove && (
+        <TouchableOpacity
+          style={styles.borderImage}
+          activeOpacity={0.7}
+          onPress={onPress}>
+          <Image source={photo} style={styles.image} />
+          {isRemove && <IcBtnRemove style={styles.btn} />}
+        </TouchableOpacity>
+      )}
       <Gap height={16} />
       {name && (
         <View>
@@ -40,12 +52,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-SemiBold',
     color: '#112340',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   subTitle: {
     fontSize: 16,
     fontFamily: 'Nunito-Regular',
     color: '#7D8797',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   btn: {position: 'absolute', right: 6, bottom: 8},
 });

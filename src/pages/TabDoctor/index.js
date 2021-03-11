@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {
   ILDokter1,
@@ -15,6 +15,7 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
+import {getData} from '../../Utils';
 
 const TabDoctor = ({navigation}) => {
   return (

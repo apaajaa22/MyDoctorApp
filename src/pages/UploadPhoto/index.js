@@ -1,10 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {color} from 'react-native-reanimated';
-import {IcBtnAdd, ILUserNull} from '../../assets';
+import {IcBtnAdd, IcBtnRemove, ILUserNull} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
+import ImagePicker from 'react-native-image-picker';
+import {showMessage} from 'react-native-flash-message';
+import {Fire} from '../../config';
+import {storeData} from '../../Utils';
 
-const UploadPhoto = ({navigation}) => {
+const UploadPhoto = ({navigation, route}) => {
+  const {fullName, profession, uid} = route.params;
+  const [hasPhoto, setHasPhoto] = useState(false);
+  const [photo, setPhoto] = useState(ILUserNull);
+  const [photoForDB, setPhotoForDB] = useState('');
+  const getImage = () => {
+    ImagePicker.launchImageLibrary(
+      {quality: 0.5, maxWidth: 200, maxHeight: 200},
+      (response) => {
+        console.log('response: ', response);
+        if (response.didCancel || response.error) {
+          showMessage({
+            message: 'anda belum memilih foto',
+            type: 'default',
+            backgroundColor: '#E06379',
+            color: '#FFFFFF',
+          });
+        } else {
+          const source = {uri: response.uri};
+          setPhotoForDB(`data:${response.type};base64, ${response.data}`);
+          setPhoto(source);
+          setHasPhoto(true);
+        }
+      },
+    );
+  };
+  const uploadAndContinue = () => {
+    Fire.database()
+      .ref('users/' + uid + '/')
+      .update({photo: photoForDB});
+
+    const data = route.params;
+    data.photo = photoForDB;
+
+    storeData('user', data);
+
+    navigation.replace('MainApp');
+  };
   return (
     <View style={styles.page}>
       <Header
@@ -15,20 +55,31 @@ const UploadPhoto = ({navigation}) => {
       <View style={styles.page1}>
         <View style={styles.wrapperPhoto}>
           <View style={styles.imageBorder}>
-            <Image source={ILUserNull} style={styles.image} />
+            <Image source={photo} style={styles.image} />
             <View style={styles.btnAdd}>
-              <TouchableOpacity activeOpacity={0.7}>
-                <IcBtnAdd />
-              </TouchableOpacity>
+              {hasPhoto && (
+                <TouchableOpacity activeOpacity={0.7} onPress={getImage}>
+                  <IcBtnRemove />
+                </TouchableOpacity>
+              )}
+              {!hasPhoto && (
+                <TouchableOpacity activeOpacity={0.7} onPress={getImage}>
+                  <IcBtnAdd />
+                </TouchableOpacity>
+              )}
             </View>
           </View>
           <Gap height={26} />
           <View>
-            <Text style={styles.name}>Shayna Melinda</Text>
-            <Text style={styles.profession}>Product Designer</Text>
+            <Text style={styles.name}>{fullName}</Text>
+            <Text style={styles.profession}>{profession}</Text>
           </View>
         </View>
-        <Button title="Upload and Continue" />
+        <Button
+          disable={!hasPhoto}
+          title="Upload and Continue"
+          onPress={uploadAndContinue}
+        />
         <Gap height={30} />
         <Link title="Skip for this" align="center" />
       </View>
@@ -51,18 +102,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 130,
   },
-  image: {width: 110, height: 110},
+  image: {width: 110, height: 110, borderRadius: 110 / 2},
   btnAdd: {position: 'absolute', right: 6, bottom: 8},
   name: {
     fontSize: 24,
     fontFamily: 'Nunito-SemiBold',
     textAlign: 'center',
     color: '#112340',
+    textTransform: 'capitalize',
   },
   profession: {
     fontSize: 18,
     fontFamily: 'Nunito-Regular',
     textAlign: 'center',
     color: '#7D8797',
+    textTransform: 'capitalize',
   },
 });
