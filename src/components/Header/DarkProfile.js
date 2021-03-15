@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Nunito-SemiBold',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   subTitle: {
     fontSize: 14,

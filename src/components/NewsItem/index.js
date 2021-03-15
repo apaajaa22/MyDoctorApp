@@ -1,7 +1,5 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Gap} from '..';
-import {ILNews1} from '../../assets';
 
 const NewsItem = ({title, date, image}) => {
   return (
@@ -10,7 +8,7 @@ const NewsItem = ({title, date, image}) => {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subTitle}>{date}</Text>
       </View>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
     </TouchableOpacity>
   );
 };

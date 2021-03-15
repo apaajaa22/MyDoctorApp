@@ -1,26 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch, useSelector} from 'react-redux';
 import {IcSplashScreen} from '../../assets';
-import {Button, Gap, InputText, Link, Loading} from '../../components';
+import {Button, Gap, InputText, Link} from '../../components';
 import Fire from '../../config/Fire';
-import {storeData, useForm} from '../../Utils';
+import {showError, storeData, useForm} from '../../Utils';
 
 const SignIn = ({navigation}) => {
-  const [form, setForm] = useForm({
-    email: '',
-    password: '',
-  });
-  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useForm({email: '', password: ''});
+  const dispatch = useDispatch();
+
+  const stateGlobal = useSelector((state) => state);
+  console.log('stateGlobal', stateGlobal);
 
   const login = () => {
     console.log(form);
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
         console.log('sukses login: ', res);
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         Fire.database()
           .ref(`users/${res.user.uid}/`)
           .once('value')
@@ -33,13 +34,8 @@ const SignIn = ({navigation}) => {
           });
       })
       .catch((err) => {
-        setLoading(false);
-        showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: '#E06379',
-          color: 'white',
-        });
+        dispatch({type: 'SET_LOADING', value: false});
+        showError(err.message);
       });
   };
   return (
@@ -73,7 +69,6 @@ const SignIn = ({navigation}) => {
           onPress={() => navigation.navigate('SignUp')}
         />
       </View>
-      {loading && <Loading />}
     </>
   );
 };

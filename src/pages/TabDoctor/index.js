@@ -1,13 +1,5 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {
-  ILDokter1,
-  ILDokter2,
-  ILDokter3,
-  ILNews1,
-  ILNews2,
-  ILNews3,
-} from '../../assets';
 import {
   DoctorCategory,
   Gap,
@@ -15,9 +7,76 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
-import {getData} from '../../Utils';
+import Fire from '../../config/Fire';
+import {showError} from '../../Utils';
 
 const TabDoctor = ({navigation}) => {
+  const [news, setNews] = useState([]);
+  const [doctorCategory, setDoctorCategory] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    getCategoryDoctor();
+    topRatedDoctor();
+    getNews();
+  }, []);
+
+  const getNews = () => {
+    Fire.database()
+      .ref('news/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          const data = res.val();
+          const filterData = data.filter((el) => el !== null);
+          setNews(filterData);
+        }
+      })
+      .catch((err) => {
+        showError(err.message);
+      });
+  };
+  const getCategoryDoctor = () => {
+    Fire.database()
+      .ref('category_doctor/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          const data = res.val();
+          const filterData = data.filter((el) => el !== null);
+          setDoctorCategory(filterData);
+          console.log('filter :', filterData);
+        }
+      })
+      .catch((err) => {
+        showError(err.message);
+      });
+  };
+
+  const topRatedDoctor = () => {
+    Fire.database()
+      .ref('doctors/')
+      .orderByChild('rate')
+      .limitToLast(3)
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          // setDoctorCategory(res.val());
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map((key) => {
+            data.push({
+              id: key,
+              data: oldData[key],
+            });
+          });
+          setDoctors(data);
+        }
+      })
+      .catch((err) => {
+        showError(err.message);
+      });
+  };
   return (
     <View style={styles.page}>
       <View style={styles.pageContent}>
@@ -37,57 +96,47 @@ const TabDoctor = ({navigation}) => {
             <View style={styles.wrapperDoctorCategory}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <Gap width={16} />
-                <DoctorCategory
-                  type="dokter umum"
-                  onPress={() => navigation.navigate('ChooseDoctor')}
-                />
-                <DoctorCategory type="psikiater" />
-                <DoctorCategory type="dokter obat" />
-                <DoctorCategory type="dokter obat" />
+                {doctorCategory.map((item) => {
+                  return (
+                    <DoctorCategory
+                      key={`category-${item.id}`}
+                      type={item.category}
+                      onPress={() => navigation.navigate('ChooseDoctor', item)}
+                    />
+                  );
+                })}
               </ScrollView>
             </View>
             <Gap height={30} />
             <View style={styles.container}>
               <Text style={styles.title}>Top Rated Doctors</Text>
               <Gap height={16} />
-              <RatedDoctor
-                image={ILDokter1}
-                name="Alexa Rachel"
-                profession="Pediatrician"
-                rating
-                onPress={() => navigation.navigate('DoctorProfile')}
-              />
-              <RatedDoctor
-                image={ILDokter2}
-                name="Sunny Frank"
-                profession="Dentist"
-                rating
-              />
-              <RatedDoctor
-                image={ILDokter3}
-                name="Poe Minn"
-                profession="Podiatrist"
-                rating
-              />
+              {doctors.map((doctor) => {
+                return (
+                  <RatedDoctor
+                    image={{uri: doctor.data.photo}}
+                    name={doctor.data.fullName}
+                    profession={doctor.data.profession}
+                    rating
+                    onPress={() => navigation.navigate('DoctorProfile', doctor)}
+                  />
+                );
+              })}
+
               <Text style={styles.title}>Good News</Text>
               <Gap height={16} />
             </View>
             <View style={styles.containerMargin}>
-              <NewsItem
-                title="Is it safe to stay at home during coronavirus?"
-                date="Today"
-                image={ILNews1}
-              />
-              <NewsItem
-                title="Consume yellow citrus helps you healthier"
-                date="Today"
-                image={ILNews2}
-              />
-              <NewsItem
-                title="Learn how to make a proper orange juice at home"
-                date="Today"
-                image={ILNews3}
-              />
+              {news.map((item) => {
+                return (
+                  <NewsItem
+                    key={item.id}
+                    title={item.title}
+                    date={item.date}
+                    image={item.image}
+                  />
+                );
+              })}
             </View>
             <Gap height={30} />
           </ScrollView>

@@ -2,9 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ILUserNull} from '../../assets';
 import {Gap, Header, List, Profile} from '../../components';
+import Fire from '../../config/Fire';
 import {getData} from '../../Utils';
 
-const UserProfile = ({navigation}) => {
+const UserProfile = ({navigation, onPress}) => {
   const [profile, setProfile] = useState({
     fullName: '',
     profession: '',
@@ -17,6 +18,13 @@ const UserProfile = ({navigation}) => {
       setProfile(res);
     });
   }, []);
+  const signOut = () => {
+    Fire.auth()
+      .signOut()
+      .then((res) => {
+        navigation.replace('GetStarted');
+      });
+  };
   return (
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
@@ -43,7 +51,13 @@ const UserProfile = ({navigation}) => {
         type="next"
       />
       <List name="Rate" desc="On Google Play Store" icon="rate" type="next" />
-      <List name="Help" desc="Read our guidelines" icon="help" type="next" />
+      <List
+        name="Log Out"
+        desc="Read our guidelines"
+        icon="help"
+        type="next"
+        onPress={signOut}
+      />
     </View>
   );
 };

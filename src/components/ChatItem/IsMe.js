@@ -1,15 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const isMe = () => {
+const isMe = ({text, date}) => {
   return (
     <View style={styles.page}>
       <View style={styles.chatContainer}>
-        <Text style={styles.title}>
-          Ibu dokter, apakah memakan jeruk tiap hari itu buruk?
-        </Text>
+        <Text style={styles.title}>{text}</Text>
       </View>
-      <Text style={styles.date}>4.20 AM</Text>
+      <Text style={styles.date}>{date}</Text>
     </View>
   );
 };

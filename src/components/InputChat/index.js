@@ -2,11 +2,20 @@ import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button} from '..';
 
-const InputChat = () => {
+const InputChat = ({value, onButtonPress, ...rest}) => {
   return (
     <View style={styles.page}>
-      <TextInput placeholder="Tulis pesan untuk Nairobi" style={styles.input} />
-      <Button type="btn-send" disable={false} />
+      <TextInput
+        placeholder="Tulis pesan untuk Nairobi"
+        style={styles.input}
+        value={value}
+        {...rest}
+      />
+      <Button
+        type="btn-send"
+        disable={value.length < 1}
+        onPress={onButtonPress}
+      />
     </View>
   );
 };

@@ -3,11 +3,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import IsMe from './IsMe';
 import IsOthers from './IsOthers';
 
-const ChatItem = ({isMe}) => {
+const ChatItem = ({isMe, text, date, photo}) => {
   if (isMe) {
-    return <IsMe />;
+    return <IsMe text={text} date={date} />;
   }
-  return <IsOthers />;
+  return <IsOthers text={text} date={date} photo={photo} />;
 };
 
 export default ChatItem;

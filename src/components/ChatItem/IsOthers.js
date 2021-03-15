@@ -2,17 +2,15 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ILDokter1} from '../../assets';
 
-const IsOthers = () => {
+const IsOthers = ({text, date, photo}) => {
   return (
     <View style={styles.page}>
-      <Image source={ILDokter1} style={styles.image} />
+      <Image source={photo} style={styles.image} />
       <View>
         <View style={styles.chatContainer}>
-          <Text style={styles.title}>
-            Oh tentu saja tidak karena jeruk itu sangat sehat...
-          </Text>
+          <Text style={styles.title}>{text}</Text>
         </View>
-        <Text style={styles.date}>4.20 AM</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
     </View>
   );

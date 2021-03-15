@@ -26,6 +26,7 @@ const UploadPhoto = ({navigation, route}) => {
           });
         } else {
           const source = {uri: response.uri};
+
           setPhotoForDB(`data:${response.type};base64, ${response.data}`);
           setPhoto(source);
           setHasPhoto(true);

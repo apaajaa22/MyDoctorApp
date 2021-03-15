@@ -59,6 +59,16 @@ const styles = StyleSheet.create({
     borderRadius: 46 / 2,
   },
   container: {flex: 1, marginLeft: 12},
-  title: {fontSize: 16, fontFamily: 'Nunito-Regular', color: '#112340'},
-  subTitle: {fontSize: 16, fontFamily: 'Nunito-Regular', color: '#7D8797'},
+  title: {
+    fontSize: 16,
+    fontFamily: 'Nunito-Regular',
+    color: '#112340',
+    textTransform: 'capitalize',
+  },
+  subTitle: {
+    fontSize: 16,
+    fontFamily: 'Nunito-Regular',
+    color: '#7D8797',
+    textTransform: 'capitalize',
+  },
 });

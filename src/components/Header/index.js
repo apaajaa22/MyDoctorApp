@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   }),
   title: (type) => ({
     fontSize: 20,
+    textTransform: 'capitalize',
     fontFamily: 'Nunito-SemiBold',
     color: type === 'dark' ? '#FFFFFF' : '#112340',
   }),
