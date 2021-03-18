@@ -1,9 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILDokter1, ILDokter2, ILDokter3} from '../../assets';
 import {List} from '../../components';
+import Fire from '../../config/Fire';
+import {getData} from '../../Utils';
 
-const TabMessages = () => {
+const TabMessages = ({navigation}) => {
+  const [user, setUser] = useState({});
+  const [historyChat, setHistoryChat] = useState([]);
+
+  useEffect(() => {
+    getDataFromLocal();
+
+    const rootDB = Fire.database().ref();
+    const urlHistory = `messages/${user.uid}/`;
+    const messageDB = rootDB.child(urlHistory);
+
+    messageDB.on('value', async (snapShot) => {
+      console.log('snapshot : ', snapShot.val());
+      if (snapShot.val()) {
+        const oldData = snapShot.val();
+        const data = [];
+        const promises = await Object.keys(oldData).map(async (key) => {
+          const urlUidDoctor = `doctors/${oldData[key].uidPartner}`;
+          const detailDoctor = await rootDB.child(urlUidDoctor).once('value');
+          data.push({
+            id: key,
+            detailDoctor: detailDoctor.val(),
+            ...oldData[key],
+          });
+        });
+        await Promise.all(promises);
+        setHistoryChat(data);
+      }
+    });
+  }, [user.uid]);
+
+  const getDataFromLocal = () => {
+    getData('user').then((res) => {
+      console.log('user login :', res);
+      setUser(res);
+    });
+  };
+
   return (
     <View style={styles.page}>
       <View style={styles.pageContent}>
@@ -11,21 +50,21 @@ const TabMessages = () => {
           <Text style={styles.title}>Messages</Text>
         </View>
         <View>
-          <List
-            image={ILDokter2}
-            name="Alexander Jannie"
-            desc="Baik ibu, terima kasih banyak atas wakt..."
-          />
-          <List
-            image={ILDokter1}
-            name="Nairobi Putri Hayza"
-            desc="Oh tentu saja tidak karena jeruk it..."
-          />
-          <List
-            image={ILDokter3}
-            name="John McParker Steve"
-            desc="Oke menurut pak dokter bagaimana unt..."
-          />
+          {historyChat.map((doctor) => {
+            const dataDoctor = {
+              id: doctor.detailDoctor.uid,
+              data: doctor.detailDoctor,
+            };
+            return (
+              <List
+                key={doctor.id}
+                image={{uri: doctor.detailDoctor.photo}}
+                name={doctor.detailDoctor.fullName}
+                desc={doctor.lastContentChat}
+                onPress={() => navigation.navigate('Chatting', dataDoctor)}
+              />
+            );
+          })}
         </View>
       </View>
     </View>
